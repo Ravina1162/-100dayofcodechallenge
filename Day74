@@ -1,0 +1,75 @@
+QUESTION : Minimum Number of Steps to Make Two Strings Anagram
+You are given two strings of the same length s and t. In one step you can choose any character of t and replace it with another character.
+
+Return the minimum number of steps to make t an anagram of s.
+
+An Anagram of a string is a string that contains the same characters with a different (or the same) ordering.
+
+
+ANSWER :
+class Solution {
+    public int minSteps(String s, String t) {
+        Map<Character,Integer> mp=new HashMap<Character,Integer>();
+        int i=0;
+        while(i<s.length())
+        {
+            char ch=s.charAt(i);
+            if(mp.containsKey(ch))
+            {
+                mp.put(ch,mp.get(ch)+1);
+            }
+            else
+            {
+                mp.put(ch,1);
+            }
+            ++i;
+        }
+        int r=0;
+
+        /*for(Map.Entry m:mp.entrySet())
+        {
+            char ch=(char)m.getKey();
+            int fr=(int)m.getValue();
+            System.out.println(ch+ " " + fr);
+            i=0;
+            int c=0;
+            while(i<t.length())
+            {
+                if(t.charAt(i)==ch)
+                c+=1;
+                i+=1;
+            }
+             if(c<fr)
+             r=r+(fr-c);
+        }*/
+        i=0;
+        while(i<t.length())
+        {
+            char ch=t.charAt(i);
+            if(mp.containsKey(ch))
+            {
+                if(mp.get(ch)>0)
+                mp.put(ch,mp.get(ch)-1);
+                if(mp.get(ch)==0)
+                mp.remove(ch);
+            }
+            else
+            ++r;
+            ++i;
+        }
+        return r;
+    }
+}
+
+Example 1:
+
+Input: s = "bab", t = "aba"
+Output: 1
+Explanation: Replace the first 'a' in t with b, t = "bba" which is anagram of s.
+
+Constraints:
+
+1 <= s.length <= 5 * 104
+s.length == t.length
+s and t consist of lowercase English letters only.
+
