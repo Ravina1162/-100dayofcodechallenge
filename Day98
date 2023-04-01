@@ -1,0 +1,41 @@
+QUESTION : Kth Missing Positive Number
+
+Given an array arr of positive integers sorted in a strictly increasing order, and an integer k.
+
+Return the kth positive integer that is missing from this array.
+
+ANSWER :
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int i,d,p=0;
+        for(i=1;k>0&&p<arr.length;i++)
+        {
+           
+            if(i==arr[p])
+                p++;
+            else
+                --k;
+            if(i!=arr[i])
+            {
+                
+            }
+        }
+        if(k>0)
+            i=i+k;
+        
+        return (i-1);
+    }
+}
+
+EXAMPLE 1:
+
+Input: arr = [2,3,4,7,11], k = 5
+Output: 9
+Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The 5th missing positive integer is 9.
+
+Constraints:
+
+1 <= arr.length <= 1000
+1 <= arr[i] <= 1000
+1 <= k <= 1000
+arr[i] < arr[j] for 1 <= i < j <= arr.length
